@@ -1,67 +1,65 @@
 /* eslint-disable max-len */
+/* eslint-disable prefer-const */
 /* This is how you use the environments variables passed by the webpack.DefinePlugin */
 
-/**
- * The linter can be disabled via LINTER=false env var - show a message in console to inform if it's on or off
- * Won't show in production
- */
-if (process.env.NODE_ENV !== 'production') {
-  if (!process.env.LINTER) {
-    console.warn('Linter disabled, make sure to run your code against the linter, otherwise, if it fails, your commit will be rejected.');
-  }
-  else {
-    console.info('Linter active, if you meet some problems, you can still run without linter, just set the env var LINTER=false.');
-  }
-}
-else if (process.env.DEVTOOLS) {
-  console.info('Turn on the "Sources" tab of your devtools to inspect original source code - thanks to sourcemaps!');
-}
+import * as d3 from 'd3';
+import * as d3GeoProjection from 'd3-geo-projection';
+import * as topojson from 'topojson';
 
-/**
- * You could setup some mocks for tests
- * Won't show in production
- */
-if (process.env.NODE_ENV === 'mock') {
-  console.info('MOCK mode');
-}
+import * as world from './world-50m.json';
 
-if (process.env.DEVTOOLS && process.env.NODE_ENV !== 'production') {
-  console.info(`You're on DEVTOOLS mode, you may have access to tools enhancing developer experience - off to you to choose to disable them in production ...`);
-}
-
-/** This is where the "real code" start */
+/** This is where the 'real code' start */
 
 const main = () => {
-  console.log('Welcome! More infos at https://github.com/topheman/webpack-babel-starter');
-  const { document } = global;
-  // the following is nothing extraordinary ... just to show that the requiring of images work (as well from sass and require / direct and inlined)
-  if (document && document.querySelector) {
+  console.log(d3GeoProjection);
 
-    const testRequireEnsureLink = document.querySelector('.test-require-ensure');
-    const logo = global.document.querySelector('.logo');
+  const width = 960;
+  const height = 960;
+  let projection = d3GeoProjection.geoAiry()
+    .rotate([90, -40])
+    .scale(340)
+    .translate([width / 2, height / 2])
+    .precision(0.1)
+    .clipAngle(90)
+    .radius(90);
 
-    /** display logos */
-    const cssClasses = ['babel', 'npm', 'eslint', 'sass'];
-    let current = 0;
-    document.getElementById('copyright-year').innerHTML = `© ${(new Date()).getFullYear()} `;
-    logo.addEventListener('mouseover', () => {
-      const body = document.getElementsByTagName('body')[0];
-      cssClasses.forEach(name => body.classList.remove(name));
-      current = (current + 1) % cssClasses.length;
-      body.classList.add(cssClasses[current]);
-    });
+  let path = d3.geoPath()
+    .projection(projection);
 
-    testRequireEnsureLink.addEventListener('click', () => {
-      // the following won't be included in the original build but will be lazy loaded only when needed
-      import('./scripts/css-utils.js')
-        .then(module => {
-          const { toggleCssClassName } = module;
-          toggleCssClassName(logo, 'rotate');
-          toggleCssClassName(testRequireEnsureLink, 'active');
-        })
-        .catch(error => console.error('Chunk loading failed', error));
-    });
-  }
+  let graticule = d3.geoGraticule();
+
+  let svg = d3.select('body').append('svg').attr('width', width).attr('height', height);
+
+  svg.append('defs').append('path')
+    .datum({ type: 'Sphere' })
+    .attr('id', 'sphere')
+    .attr('d', path);
+
+  svg.append('use')
+    .attr('class', 'stroke')
+    .attr('xlink:href', '#sphere');
+
+  svg.append('use')
+    .attr('class', 'fill')
+    .attr('xlink:href', '#sphere');
+
+  svg.append('path')
+    .datum(graticule)
+    .attr('class', 'graticule')
+    .attr('d', path);
+
+  svg.insert('path', '.graticule')
+    .datum(topojson.feature(world, world.objects.land))
+    .attr('class', 'land')
+    .attr('d', path);
+
+  svg.insert('path', '.graticule')
+    .datum(topojson.mesh(world, world.objects.countries, (a, b) => a !== b))
+    .attr('class', 'boundary')
+    .attr('d', path);
+
+  // d3.select(self.frameElement).style('height', height + 'px');
 };
 
 main();
+
