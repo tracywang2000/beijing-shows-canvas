@@ -62,7 +62,6 @@
     "html-webpack-plugin": "^2.9.0",
     "lodash.template": "^4.2.2",
     "mocha": "^3.4.2",
-    "moment": "^2.11.2",
     "my-local-ip": "^1.0.0",
     "node-sass": "^4.5.3",
     "npmlog": "^2.0.2",
@@ -76,10 +75,14 @@
   },
   "private": true,
   "dependencies": {
+    "color": "^2.0.0",
     "d3": "^4.11.0",
     "d3-geo": "^1.9.0",
     "d3-geo-projection": "^2.3.1",
     "d3-selection": "^1.1.0",
-    "topojson": "^3.0.2"
+    "d3-tip": "^0.7.1",
+    "moment": "^2.19.1",
+    "topojson": "^3.0.2",
+    "trianglify": "^1.2.0"
   }
 }

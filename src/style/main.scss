@@ -1,86 +1,89 @@
-@import "variables";
+@import "fonts";
+@import "header";
+@import "canvas";
 
-@import "github-ribbon";
-@import "footer";
-@import "primary-logo-animation";
 
 html {
   font-family: Arial,sans-serif;
 }
 
-h1,
-h2,
-h3,
-h5,
-h6 {
-  color: $brand-primary;
+#background {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
 }
 
-a {
-  color: $brand-primary;
+#wrapper {
+  z-index: 100;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  min-width: 1080px;
+  min-height: 720px;
+  overflow: scroll;
 }
 
-img.aligncenter {
-  display: block;
-  margin: 5px auto;
+.mouse-tip-template {
+  display: none;
 }
 
-img.size-full {
-  height: auto;
-  max-width: 100%;
-}
-
-@media screen and (min-width:$break-point) {
-  p.crop {
-    width: 90%;
+.mouse-tip {
+  background-color: #1565C0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  color: white;
+  padding: 12px;
+  margin: 0;
+  font-family: 'Museo Sans Rounded';
+  font-weight: 300;
+  font-size: 12px;
+  width: 240px;
+  text-align: center;
+  border-radius: 3px;
+  opacity: 0;
+  transition: opacity .2s ease-in-out;  
+  &.show {
+    opacity: 1;
   }
-  img.logo {
-    transition: opacity 0.5s;
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 126px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #1565C0;
   }
-  img.logo:hover {
-    opacity: 0.4;
+  p {
+    margin: 0;
+  }
+  .country-name {
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .small {
+    opacity: .5;
   }
 }
-
-.clearfix {
-  clear: both;
-}
-
-code {
-  padding: 2px 4px;
-  font-size: 90%;
-  color: #c7254e;
-  background-color: #f9f2f4;
-  border-radius: 4px;
-}
-
-body {
-  background: #fcfcfa;
-}
-
-.stroke {
-  fill: none;
-  stroke: #000;
-  stroke-width: 3px;
-}
-
-.fill {
-  fill: #fff;
-}
-
-.graticule {
-  fill: none;
-  stroke: #777;
-  stroke-width: .5px;
-  stroke-opacity: .5
-}
-
-.land {
-  fill: #222;
-}
-
-.boundary {
-  fill: none;
-  stroke: #fff;
-  stroke-width: .5px;
+.globe-info {
+  position: absolute;
+  right: 5%;
+  bottom: 3%;
+  color: white;
+  font-family: "Museo Sans Rounded";
+  font-weight: 100;
+  .show-all-current {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }

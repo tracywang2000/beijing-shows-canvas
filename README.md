@@ -15,8 +15,10 @@ Started using https://github.com/topheman/webpack-babel-starter
 Pending Tasks:
 
 * [x] Loads map
-* [ ] Loads data
+* [x] Loads data
 * [ ] Filters and controllers
-* [ ] Theme & Style
+    - Timeline Filter
+    - Summary Tooltop
+* [x] Theme & Style
 * [ ] Functionality
 * [ ] Animation

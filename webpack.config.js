@@ -61,7 +61,7 @@ if(!FAIL_ON_ERROR) {
 }
 
 plugins.push(new HtmlWebpackPlugin({
-  title: 'Topheman - Webpack Babel Starter Kit',
+  title: 'Beijing Foreign Shows Canvas :: by Tracy Tang',
   template: 'src/index.ejs', // Load a custom template
   inject: MODE_DEV_SERVER, // inject scripts in dev-server mode - in build mode, use the template tags
   MODE_DEV_SERVER: MODE_DEV_SERVER,

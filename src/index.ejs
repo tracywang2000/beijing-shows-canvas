@@ -7,10 +7,60 @@
   <% if (!htmlWebpackPlugin.options.MODE_DEV_SERVER) { %><link href="<%= webpack.assetsByChunkName['main'][1] %>" rel="stylesheet"><% } %>
 </head>
 <body class="babel">
-<!-- feel free to remove the following - except the script tags at the end -->
-<span id="forkongithub"><a href="https://github.com/topheman/webpack-babel-starter" title="topheman/webpack-babel-starter on github">Fork me on GitHub</a></span>
-<h1>Webpack Babel Starter Kit <span style="font-size: 60%">v3 (using webpack2 / npm5)</span></h1>
+<div id="background">
+</div>
+<div id="wrapper">
+  <header id="header">
+      <h1>- Beijing Foreign Shows Canvas -</h1>
+      <p>by <a href="mailto:1119354527@qq.com">Tracy Wang</a></p>
+  </header>
+  <!-- <div id="filters">
+    <div class="filter" id="filter-type">
+      <span class="title">Type of show</span>
+      <span class="dropdown">All</span>
+      <ul class="items">
+        <li>Concert</li>
+        <li>Opera</li>
+      </ul>
+    </div>
+  </div> -->
+  <div id="canvas">
 
+  </div>
+  <div id="timeline">
+    <svg></svg>
+    <div class="timeline-filter">
+      <div class="timeline-filter-object" id="timeline-filter-start">
+        <div class="arrow"></div>
+        <div class="date">Jan 20, 2016</div>
+      </div>
+      <div class="timeline-filter-object" id="timeline-filter-end">
+        <div class="arrow"></div>
+        <div class="date">Jan 20, 2017</div>
+      </div>
+    </div>
+    <div class="axis-endpoint" id="axis-endpoint-start">Nov 10, 2015</div>
+    <div class="axis-endpoint" id="axis-endpoint-end">Nov 10, 2017</div>
+  </div>
+
+  <div class="mouse-tip-template">
+    <p class="country-name">Country</p>
+    <p class="info"><span class="number-of-shows">0</span> shows imported from this country.</p>
+    <p class="small">Click country to see details.</p>
+  </div>
+  <div class="globe-info">
+    <p><span class="counts-total"></span> shows in total. <span class="show-all-current"><span class="counts-current"></span> shows</span> were filtered from the specific date range.</p>
+  </div>
+</div>
+<div id="data-display">
+  <div class="content">
+    <ul>
+      <li class="element">
+
+      </li>
+    </ul>
+  </div>
+</div>
 <!-- keep the following lines -->
 <% if (!htmlWebpackPlugin.options.MODE_DEV_SERVER) { %><script src="<%= Object.prototype.toString.call(webpack.assetsByChunkName['bundle']) === '[object Array]' ? webpack.assetsByChunkName['bundle'][0] : webpack.assetsByChunkName['bundle'] %>"></script><% } %>
 </body>

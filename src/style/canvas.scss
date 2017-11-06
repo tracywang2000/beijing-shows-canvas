@@ -1,0 +1,118 @@
+#canvas {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  svg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  .stroke {
+    fill: none;
+    stroke: rgba(255, 255, 255, .33);
+    stroke-width: 2px;
+  }
+  
+  .fill {
+    fill: rgba(255, 255, 255, .05);
+  }
+  // 
+  .graticule {
+    fill: none;
+    stroke: rgba(255, 255, 255, .33);
+    stroke-width: 1px;
+    stroke-opacity: 1;
+  }
+  
+  .country {
+    fill: rgba(255, 255, 255, .6);
+    stroke: #fff;
+    stroke-width: .5px;
+    opacity: .5;
+    transition: all .2s ease-in-out;
+  }
+
+  .country.hasShow {
+    opacity: .7
+  }
+
+  .country.hasShow.hover {
+    stroke-width: 3px;
+    opacity: 1;
+    cursor: pointer;
+  }
+}
+
+#timeline {
+  position: absolute;
+  top: 100px;
+  bottom: 0;
+  left: 0;
+  width: 25%;
+  svg {
+    position: absolute;
+    left: 20%;
+    top: 80px;
+    overflow: hidden;
+    .timelineCurve {
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 2px;
+    }
+    .timelineArea {
+      fill: rgba(255, 255, 255, .3);
+      stroke: none;
+      stroke-width: 2px;
+    }
+    .timelineFilterCurve {
+      fill: none;
+      stroke: #F44336;
+      stroke-width: 2px;
+    }
+    .timelineFilterArea {
+      fill: #ff8a80;
+      stroke: none;
+      stroke-width: 2px;
+      cursor: pointer;
+    }
+  }
+  .axis-endpoint {
+    font-family: 'Museo Sans Rounded';
+    font-weight: 300;
+    color: white;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    height: 36px;
+    line-height: 36px;
+  }
+  .timeline-filter {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    .timeline-filter-object {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      cursor: pointer;
+    }
+    .timeline-filter-object .date {
+      height: 36px;
+      line-height: 38px;
+      font-family: 'Museo Sans Rounded';
+      font-weight: 700;
+      margin: -18px auto 0;
+      width: 100px;
+      text-align: center;
+      background-color: #F44336;
+      color: rgba(255,255,255,.9);
+      padding: 0 12px;
+      border-radius: 24px;
+    }
+  }
+}
